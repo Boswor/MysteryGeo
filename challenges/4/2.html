@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <title>GCAQJQP</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" href="../../src/css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
+                "OrbitControls": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        let northLocation = 116;
+        let imgPath = '../../src/img/challenges/4/2.jpg';
+    </script>
+    <script type="module" src="../../src/js/main.js"></script>
+    <div class="menu-bar">
+        <div class="title">
+            GCAQJQP - Round&nbsp;2
+        </div>
+
+        <div class="popup-group">
+            <div class="info has-popup">
+                <img class="icon-info" src="/src/img/info.png" alt="info"><span class="hide-vm"> Infos</span>
+
+                <div class="popup">
+                    <div class="popup-container">
+                        <div class="close-popup">&times;</div>
+                        <div class="popup-container-content">
+                            <div class="list">
+                                <div class="cell">
+                                    Image de Google : Oui ✔️
+                                </div>
+
+                                <div class="cell">
+                                    Distance tolérée : 25m
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="round-list">
+            <a href="1.html">Round&nbsp;1</a>
+            <a href="3.html">Round&nbsp;3</a>
+            <a href="4.html">Round&nbsp;4</a>
+            <a href="5.html">Round&nbsp;5</a>
+        </div>
+    </div>
+    <canvas class="challenge">
+    </canvas>
+    <div class="ui">
+        <div class="compass">
+            <img src="/src/img/compass.png" alt="boussole">
+        </div>
+        <div class="zoom-container">
+            <div class="zoom zoom-out">
+                -
+            </div>
+            <div class="zoom zoom-in">
+                +
+            </div>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div class="scale-map">
+            <img class="icon-maximize" src="/src/img/maximize.png" alt="boussole">
+            <img class="icon-minimize" src="/src/img/minimize.png" alt="boussole">
+        </div>
+
+
+        <div id="map"> </div>
+        <div class="coordinates-checker">
+            <div class="coordinates-container">
+                Coordonnées&nbsp;: <span class="coordinates">N47°XX.XXX W001°XX.XXX</span>
+            </div>
+            <a href="http://geocheck.org/geo_inputchkcoord.php?gid=6421600189de2b9-c503-40ff-b54a-b036cb96ded2"><img
+                    src="http://geocheck.org/geocheck_small.php?gid=6421600189de2b9-c503-40ff-b54a-b036cb96ded2"
+                    title="Vérifier votre solution" border="0"></a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

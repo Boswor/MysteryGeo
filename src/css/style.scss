@@ -1,0 +1,495 @@
+$break-tablet: 768px;
+$white: #fff;
+$black: #000;
+$whiteTransparent: rgba($color: #fff, $alpha: 0.75);
+$blackTransparent: rgba($color: #000, $alpha: 0.75);
+$whiteTransparenter: rgba($color: #fff, $alpha: 0.2);
+$blackTransparenter: rgba($color: #000, $alpha: 0.5);
+$greyDark: #222;
+
+$ff: 'Roboto', Arial, Helvetica, sans-serif;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 10px;
+    background: $black;
+
+}
+
+.menu-bar {
+    position: fixed;
+    z-index: 12;
+    color: $white;
+    background-color: $blackTransparent;
+    width: 100vw;
+    min-height: 8rem;
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3.2rem;
+    font-family: $ff;
+    backdrop-filter: blur(10px);
+
+    @media screen and (max-width: $break-tablet) {
+        gap: 2rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+
+        @media screen and (max-width: $break-tablet) {
+            font-size: 2rem;
+        }
+    }
+
+    .popup-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: auto;
+
+        @media screen and (max-width: $break-tablet) {
+            font-size: 0.5rem;
+        }
+    }
+
+    .info,
+    .edit {
+        height: 4rem;
+        font-size: 1.6rem;
+        border: 3px solid $black;
+        border-radius: 5px;
+        padding: 0.8rem;
+        background: $blackTransparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        flex-shrink: 0;
+        color: $white;
+
+        img {
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+    }
+
+    .round-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem;
+
+        @media screen and (max-width: $break-tablet) {
+            font-size: 0.5rem;
+
+        }
+
+        a {
+            font-size: 1.6rem;
+            line-height: 1.2;
+            color: $white;
+            white-space: nowrap;
+
+            @media screen and (max-width: $break-tablet) {
+                font-size: 1.2rem;
+
+            }
+        }
+    }
+}
+
+.challenge {
+    cursor: grab;
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    overflow: hidden;
+    max-width: 100vw;
+    max-height: 100vw;
+}
+
+.ui {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    bottom: 3.2rem;
+    left: 3.2rem;
+    gap: 1.6rem;
+
+    @media screen and (max-width: $break-tablet) {
+        left: 1.6rem;
+        bottom: 1.6rem;
+        gap: 0.8rem;
+    }
+
+    .compass {
+        border-radius: 100%;
+        width: 12.8rem;
+        height: 12.8rem;
+        border: 5px solid $black;
+        background: $blackTransparent;
+        padding: 1.6rem;
+        backdrop-filter: blur(2px);
+
+
+        @media screen and (max-width: $break-tablet) {
+            width: 8rem;
+            height: 8rem;
+            padding: 0.8rem;
+        }
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+
+        }
+
+    }
+
+    .zoom-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+
+        .zoom {
+            width: 4.8rem;
+            height: 4.8rem;
+            color: $white;
+            background: $blackTransparent;
+            backdrop-filter: blur(2px);
+            border-radius: 5px;
+            border: 3px solid $black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bolder;
+            font-family: $ff;
+            font-size: 3.2rem;
+            cursor: pointer;
+
+            @media screen and (max-width: $break-tablet) {
+                width: 3.2rem;
+                height: 3.2rem;
+                font-size: 1.6rem;
+            }
+        }
+
+    }
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $blackTransparenter;
+    pointer-events: none;
+
+    &:before {
+        content: '';
+        width: 6.4rem;
+        height: 6.4rem;
+        border-radius: 100%;
+        background-color: transparent;
+        border: 1.6rem solid $whiteTransparenter;
+        border-top-color: $white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        animation: 1s loader linear infinite;
+    }
+
+    @keyframes loader {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+}
+
+
+.map-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 10;
+    bottom: 3.2rem;
+    right: 3.2rem;
+    width: 20rem;
+    height: 13.33rem;
+    border: 3px solid $blackTransparent;
+    border-radius: 5px;
+    opacity: 0.75;
+    max-width: calc(100vw - 3.2rem);
+
+    &.is-scaled {
+        width: 60rem;
+        height: 46rem;
+        opacity: 1;
+        border-color: $black;
+
+
+        #map {
+            height: calc(100% - 6rem);
+            cursor: crosshair;
+
+            @media screen and (max-width: $break-tablet) {
+                height: calc(100% - 8rem);
+            }
+        }
+
+        .coordinates-checker {
+            display: flex;
+
+            @media screen and (max-width: $break-tablet) {
+                align-items: center;
+            }
+
+            .coordinates-container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                @media screen and (max-width: $break-tablet) {
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+
+                .edit {
+                    width: 2rem;
+                    height: 2rem;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .scale-map {
+            .icon-minimize {
+                display: block;
+            }
+
+            .icon-maximize {
+                display: none;
+            }
+        }
+    }
+
+    @media screen and (max-width: $break-tablet) {
+        right: 1.6rem;
+        bottom: 1.6rem;
+    }
+
+    .scale-map {
+        border-radius: 100%;
+        width: 2rem;
+        height: 2rem;
+        border: 3px solid $black;
+        background: $greyDark;
+        padding: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: $white;
+        transform: translateX(-50%) translateY(-50%);
+        font-family: $ff;
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 401;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .icon-minimize {
+            display: none;
+        }
+
+        .icon-maximize {
+            display: block;
+        }
+    }
+
+    #map {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: unset;
+        min-height: unset;
+        cursor: pointer;
+
+        .leaflet-marker-icon {
+            pointer-events: none !important;
+        }
+    }
+
+    .coordinates-checker {
+        display: none;
+        position: absolute;
+        background: $white;
+        color: $black;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6rem;
+        padding: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.6rem;
+
+        font-family: $ff;
+        font-size: 1.6rem;
+        line-height: 1.2;
+
+        @media screen and (max-width: $break-tablet) {
+
+            height: 8rem;
+        }
+
+
+        .checker {
+            height: 100%;
+
+            @media screen and (max-width: $break-tablet) {
+                height: auto;
+            }
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+.popup {
+    z-index: 402;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $blackTransparenter;
+    padding: 4rem;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    color: $white;
+
+    &.is-active {
+        display: flex;
+    }
+
+    .popup-container {
+        position: relative;
+        max-width: 1440px;
+        width: 100%;
+        height: auto;
+        margin: auto;
+        cursor: default;
+        max-height: 100%;
+
+        &.secret {
+            .popup-container-content {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        .popup-container-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border: 5px solid $black;
+            background: $blackTransparent;
+            backdrop-filter: blur(2px);
+            padding: 1.6rem;
+            cursor: default;
+            overflow-y: auto;
+            min-height: 15rem;
+            font-family: $ff;
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+        }
+
+        .close-popup {
+            border-radius: 100%;
+            width: 3rem;
+            height: 3rem;
+            border: 5px solid $black;
+            background: $greyDark;
+            padding: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translateX(50%) translateY(-50%);
+            font-family: $ff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+    }
+}
+
+.hide-vm {
+    @media screen and (max-width: $break-tablet) {
+        display: none;
+    }
+}
+
+body.menu {
+    text-align: center;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+        color: white;
+        font-size: 2rem;
+        font-family: $ff;
+    }
+}
