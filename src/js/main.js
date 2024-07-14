@@ -37,7 +37,9 @@ function init() {
     // Sphère
     const geometry = new THREE.SphereGeometry(10, 32, 32);
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(imgPath, function (e) {
+    const urlParams = new URLSearchParams(window.location.search);
+    let limitBandwidthMode = urlParams.get('limitBandwidthMode') == 'true';
+    const texture = textureLoader.load(limitBandwidthMode && typeof linkLimitBandwidthMode != 'undefined' && linkLimitBandwidthMode != '' ? linkLimitBandwidthMode : imgPath, function (e) {
         render();
         controls.update();
 
