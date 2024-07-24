@@ -220,7 +220,10 @@ window.addEventListener('load', (e) => {
                 let lat = e.latlng.lat;
                 let lon = e.latlng.lng;
 
-                coordinates.innerText = convertCoordinates(lat, true) + " " + convertCoordinates(lon, false)
+                let coorectedLat = e.latlng.wrap().lat;
+                let coorectedLon = e.latlng.wrap().lng;
+
+                coordinates.innerText = convertCoordinates(coorectedLat, true) + " " + convertCoordinates(coorectedLon, false)
 
                 //Clear existing marker, 
                 if (theMarker != undefined) {
