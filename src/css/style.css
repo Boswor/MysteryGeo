@@ -450,3 +450,11 @@ body.menu a {
   font-size: 2rem;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
+
+#webglmessage {
+  position: absolute;
+  top: calc(50% - 5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: calc(100vw - 8rem);
+}

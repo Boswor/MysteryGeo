@@ -493,3 +493,11 @@ body.menu {
         font-family: $ff;
     }
 }
+
+#webglmessage {
+    position: absolute;
+    top: calc(50% - 5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: calc(100vw - 8rem);
+}

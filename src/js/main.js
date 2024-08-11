@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
+import WebGL from 'WebGL';
 
 
 let camera, scene, renderer, controls, compass;
@@ -10,6 +11,13 @@ let animatedScale = 1;
 let scaleArray = [0.8, 1, 1.5, 2, 3, 4];
 
 function init() {
+
+    if (!WebGL.isWebGL2Available()) {
+        const warning = WebGL.getWebGL2ErrorMessage();
+        document.querySelector('body').appendChild(warning);
+        return;
+    }
+
     let canvas = document.querySelector(".challenge");
     if (!canvas) return;
 
