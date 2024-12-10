@@ -89,6 +89,54 @@ function init() {
             zoomOut();
         }
     });
+
+    // Fonction pour détecter le zoom à deux doigts sur mobile
+    function detectPinchZoom(element, onZoom) {
+        let initialDistance = null;
+
+        // Fonction pour calculer la distance entre deux points de contact
+        function getDistance(touches) {
+            const dx = touches[0].pageX - touches[1].pageX;
+            const dy = touches[0].pageY - touches[1].pageY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        // Gestionnaire pour touchstart
+        element.addEventListener('touchstart', (event) => {
+            if (event.touches.length === 2) {
+                initialDistance = getDistance(event.touches);
+            }
+        });
+
+        // Gestionnaire pour touchmove
+        element.addEventListener('touchmove', (event) => {
+            if (event.touches.length === 2 && initialDistance !== null) {
+                const currentDistance = getDistance(event.touches);
+                const zoomFactor = currentDistance / initialDistance;
+
+                if (onZoom && typeof onZoom === 'function') {
+                    onZoom(zoomFactor);
+                }
+            }
+        });
+
+        // Gestionnaire pour touchend
+        element.addEventListener('touchend', (event) => {
+            if (event.touches.length < 2) {
+                initialDistance = null; // Réinitialiser lorsque les doigts sont levés
+            }
+        });
+    }
+
+    // Exemple d'utilisation
+    detectPinchZoom(canvas, (zoomFactor) => {
+        if (zoomFactor > 1) {
+            zoomIn();
+        } else {
+            zoomOut();
+        }
+    });
+
 }
 
 function animateZoom() {
